@@ -21,6 +21,7 @@
         android:layout_marginEnd="16dp"
         android:text="Name"
         android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +32,7 @@
         android:layout_width="0dp"
         android:textColor="@color/white"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
         app:layout_constraintEnd_toEndOf="@+id/nameTextViewTitle"
         app:layout_constraintStart_toStartOf="@+id/nameTextViewTitle"
         app:layout_constraintTop_toBottomOf="@+id/nameTextViewTitle" />
@@ -42,6 +43,7 @@
         android:layout_height="wrap_content"
         android:text="Description"
         android:textColor="@color/white"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/nameTextView"
         app:layout_constraintStart_toStartOf="@+id/nameTextView"
@@ -62,7 +64,7 @@
         android:layout_width="0dp"
         android:textColor="@color/white"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
         app:layout_constraintEnd_toEndOf="@+id/descTextViewTitle"
         app:layout_constraintStart_toStartOf="@+id/descTextViewTitle"
         app:layout_constraintTop_toBottomOf="@+id/descTextViewTitle" />
@@ -74,6 +76,7 @@
         android:layout_marginTop="16dp"
         android:text="Comics"
         android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/descTextView"
         app:layout_constraintStart_toStartOf="@+id/descTextView"
         app:layout_constraintTop_toBottomOf="@+id/descTextView" />
@@ -93,6 +96,7 @@
         android:layout_marginTop="16dp"
         android:text="Events"
         android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/comicsRecyclerView"
         app:layout_constraintStart_toStartOf="@+id/comicsRecyclerView"
         app:layout_constraintTop_toBottomOf="@+id/comicsRecyclerView" />
@@ -112,6 +116,7 @@
         android:layout_marginTop="16dp"
         android:text="Series"
         android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/eventsRecyclerView"
         app:layout_constraintStart_toStartOf="@+id/eventsRecyclerView"
         app:layout_constraintTop_toBottomOf="@+id/eventsRecyclerView" />
@@ -131,6 +136,7 @@
         android:layout_marginTop="16dp"
         android:text="Stories"
         android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/seriesRecyclerView"
         app:layout_constraintStart_toStartOf="@+id/seriesRecyclerView"
         app:layout_constraintTop_toBottomOf="@+id/seriesRecyclerView" />
