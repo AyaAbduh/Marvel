@@ -13,7 +13,7 @@ import com.example.marvel.data.Character
 import com.example.marvel.data.CharacterDataWrapper
 import com.example.marvel.domain.repository.ItemPagingSource
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel: ViewModel() {
 
     private val _getCharacters= MutableLiveData<CharacterDataWrapper>()
     val getCharactersLiveData: LiveData<CharacterDataWrapper> = _getCharacters

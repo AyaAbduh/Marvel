@@ -14,44 +14,44 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    private var  homeViewModel: HomeViewModel = HomeViewModel()
-
+    private var homeViewModel: HomeViewModel = HomeViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-            getCharacters()
+        getCharacters()
     }
 
- fun getCharacters() {
-     val customAdapter = ItemAdapter()
-     val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
-     recyclerView.layoutManager = LinearLayoutManager(this)
-     recyclerView.adapter = customAdapter
+    fun getCharacters() {
+        val customAdapter = ItemAdapter()
+        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = customAdapter
 
-     lifecycleScope.launch {
-         homeViewModel.items.observe(this@MainActivity) { pagingData ->
-             customAdapter.submitData(lifecycle,pagingData)
-         }
-     }
-     homeViewModel.getCharactersLiveData.observe(this){
-         //handling search
-         val searchEditText = findViewById<EditText>(R.id.editTextText)
-         searchEditText.addTextChangedListener(object:TextWatcher{
-             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-             }
-
-             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                val filteredList=it.data?.characterList?.filter {
-                    it.name?.contains(s.toString(), ignoreCase = true)!!
+        lifecycleScope.launch {
+            homeViewModel.items.observe(this@MainActivity) { pagingData ->
+                customAdapter.submitData(lifecycle, pagingData)
+            }
+        }
+        homeViewModel.getCharactersLiveData.observe(this) {
+            //handling search
+            val searchEditText = findViewById<EditText>(R.id.editTextText)
+            searchEditText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 }
-                 val customAdapter = CustomAdapter(filteredList!!)
-                 recyclerView.adapter = customAdapter
-             }
 
-             override fun afterTextChanged(p0: Editable?) {
-             }
+                override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    val filteredList = it.data?.characterList?.filter {
+                        it.name?.contains(s.toString(), ignoreCase = true)!!
+                    }
+                    val customAdapter = CustomAdapter(filteredList!!)
+                    recyclerView.adapter = customAdapter
+                }
 
-         })
-    }}
+                override fun afterTextChanged(p0: Editable?) {
+                }
+
+            })
+        }
+    }
 }

@@ -3,19 +3,18 @@ package com.example.marvel.domain.repository
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.game.di.AppModule
-import com.example.marvel.data.Character
+import com.example.marvel.data.ItemDetailsCellModel
 import com.example.marvel.data.TheDBInterface
 
-class ItemPagingSource: PagingSource<Int, Character>() {
-
+class CharacterSpecificDetailPagingSource(val id: String, val requiredDetail: CharacterSpecificDetail): PagingSource<Int, ItemDetailsCellModel>() {
     private  val theDBInterface : TheDBInterface = AppModule.getClient()
-    private val homeRepository: HomeRepository = HomeRepository(theDBInterface)
+    private val characterDetailsRepository = CharacterDetailsRepository(theDBInterface)
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ItemDetailsCellModel> {
         return try {
             val currentPage = params.key ?: 0
             val pageSize = params.loadSize
-            val items = homeRepository.getCharacters(pageSize, currentPage * pageSize)
+            val items = characterDetailsRepository.getSpecificDetail(id, requiredDetail)
 
             LoadResult.Page(
                 data = items,
@@ -27,7 +26,7 @@ class ItemPagingSource: PagingSource<Int, Character>() {
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Character>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, ItemDetailsCellModel>): Int? {
         return null
     }
 }
