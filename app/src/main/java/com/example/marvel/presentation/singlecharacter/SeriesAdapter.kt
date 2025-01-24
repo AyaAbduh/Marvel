@@ -34,7 +34,7 @@ class SeriesAdapter(private val dataSet: List<Series>) :
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.text_row_item, viewGroup, false)
+            .inflate(R.layout.row_item, viewGroup, false)
 
         return ViewHolder(view)
     }
@@ -50,12 +50,6 @@ class SeriesAdapter(private val dataSet: List<Series>) :
         Glide.with(viewHolder.imageView.context)
             .load(dataSet.get(position).thumbnail?.path?.replace("http","https")+"."+dataSet.get(position).thumbnail?.extension)
             .into(viewHolder.imageView)
-
-        viewHolder.imageView.setOnClickListener {
-            val intent = Intent(viewHolder.textView.context, SingleCharacterActivity::class.java)
-            intent.putExtra("id", dataSet.get(position).id)
-            viewHolder.textView.context.startActivity(intent)
-        }
 
     }
 
