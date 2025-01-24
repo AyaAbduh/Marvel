@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main"
+    android:background="@color/black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.singlecharacter.SingleCharacterActivity">
+
+    <TextView
+        android:id="@+id/nameTextViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Name"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CharacterImageView" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="0dp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/nameTextViewTitle"
+        app:layout_constraintStart_toStartOf="@+id/nameTextViewTitle"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextViewTitle" />
+
+    <TextView
+        android:id="@+id/descTextViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/nameTextView"
+        app:layout_constraintStart_toStartOf="@+id/nameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+
+    <ImageView
+        android:id="@+id/CharacterImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/descTextView"
+        android:layout_width="0dp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/descTextViewTitle"
+        app:layout_constraintStart_toStartOf="@+id/descTextViewTitle"
+        app:layout_constraintTop_toBottomOf="@+id/descTextViewTitle" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Comics"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/descTextView"
+        app:layout_constraintStart_toStartOf="@+id/descTextView"
+        app:layout_constraintTop_toBottomOf="@+id/descTextView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comicsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/EventsTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Events"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/comicsRecyclerView"
+        app:layout_constraintStart_toStartOf="@+id/comicsRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/comicsRecyclerView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/eventsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="@+id/EventsTextView"
+        app:layout_constraintStart_toStartOf="@+id/EventsTextView"
+        app:layout_constraintTop_toBottomOf="@+id/EventsTextView" />
+
+    <TextView
+        android:id="@+id/seriesTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Series"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/eventsRecyclerView"
+        app:layout_constraintStart_toStartOf="@+id/eventsRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/eventsRecyclerView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/seriesRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="@+id/seriesTextView"
+        app:layout_constraintStart_toStartOf="@+id/seriesTextView"
+        app:layout_constraintTop_toBottomOf="@+id/seriesTextView" />
+
+    <TextView
+        android:id="@+id/storiesTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Stories"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/seriesRecyclerView"
+        app:layout_constraintStart_toStartOf="@+id/seriesRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/seriesRecyclerView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/storiesRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/storiesTextView"
+        app:layout_constraintStart_toStartOf="@+id/storiesTextView"
+        app:layout_constraintTop_toBottomOf="@+id/storiesTextView" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
