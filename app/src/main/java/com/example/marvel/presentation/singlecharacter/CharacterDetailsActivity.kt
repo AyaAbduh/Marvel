@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,6 +15,7 @@ import com.example.marvel.domain.repository.CharacterSpecificDetail
 import com.example.marvel.presentation.viewmodel.CharacterDetailsViewModel
 import com.example.marvel.presentation.viewmodel.HomeViewModel
 import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 class CharacterDetailsActivity : AppCompatActivity() {
 
@@ -54,18 +56,23 @@ class CharacterDetailsActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(requiredDetail: CharacterSpecificDetail, characterID: String) {
-        val recyclerView: RecyclerView = when (requiredDetail) {
-            CharacterSpecificDetail.series -> findViewById(R.id.seriesRecyclerView)
-            CharacterSpecificDetail.comics -> findViewById(R.id.comicsRecyclerView)
-            CharacterSpecificDetail.stories -> findViewById(R.id.storiesRecyclerView)
-            CharacterSpecificDetail.events -> findViewById(R.id.eventsRecyclerView)
-        }
+        val recyclerView: RecyclerView = findViewById(requiredDetail.getRelativeRecyclerName())
+        val headerText: TextView = findViewById(requiredDetail.getRelativeTextView())
         recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         val adapter = CharacterDetailListAdapter()
         recyclerView.adapter = adapter
         lifecycleScope.launch {
             characterDetailsViewModel.getSpecificDetail(characterID, requiredDetail).observe(this@CharacterDetailsActivity) { pagingData ->
                 adapter.submitData(lifecycle, pagingData)
+            }
+            adapter.loadStateFlow.collect { loadStates ->
+                if (loadStates.refresh is LoadState.NotLoading && adapter.snapshot().isEmpty()) {
+                    recyclerView.visibility = View.INVISIBLE
+                    headerText.visibility = View.INVISIBLE
+                } else {
+                    recyclerView.visibility = View.VISIBLE
+                    headerText.visibility = View.VISIBLE
+                }
             }
         }
     }

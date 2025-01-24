@@ -1,6 +1,7 @@
 package com.example.marvel.domain.repository
 
 import android.util.Log
+import com.example.marvel.R
 import com.example.marvel.data.Character
 import com.example.marvel.data.CharacterDataWrapper
 import com.example.marvel.data.DataWrapper
@@ -90,5 +91,23 @@ class CharacterDetailsRepository(private val theDBInterface: TheDBInterface) {
 }
 
 enum class CharacterSpecificDetail {
-    comics, series, stories, events
+    comics, series, stories, events;
+
+    fun getRelativeRecyclerName(): Int {
+        return when (this) {
+            comics -> R.id.comicsRecyclerView
+            series -> R.id.seriesRecyclerView
+            stories -> R.id.storiesRecyclerView
+            events -> R.id.eventsRecyclerView
+        }
+    }
+
+    fun getRelativeTextView(): Int {
+        return when (this) {
+            comics -> R.id.comicsTextView
+            series -> R.id.seriesTextView
+            stories -> R.id.storiesTextView
+            events -> R.id.eventsTextView
+        }
+    }
 }
