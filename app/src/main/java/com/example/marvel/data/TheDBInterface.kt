@@ -11,7 +11,9 @@ interface TheDBInterface {
     @GET("v1/public/characters")
     suspend fun getCharacters(@Query("ts") ts:String,
                                 @Query("apikey") apikey:String,
-                                @Query("hash") hash:String): Response<CharacterDataWrapper>
+                                @Query("hash") hash:String,
+                                @Query("limit")limit:Int,
+                                @Query("offset")offset:Int): Response<CharacterDataWrapper>
 
     //character details
     @GET("v1/public/characters/{id}")

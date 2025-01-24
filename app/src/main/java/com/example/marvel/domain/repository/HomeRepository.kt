@@ -1,6 +1,7 @@
 package com.example.marvel.domain.repository
 
 import android.util.Log
+import com.example.marvel.data.Character
 import com.example.marvel.data.CharacterDataWrapper
 import com.example.marvel.data.ComicDataWrapper
 import com.example.marvel.data.EventDataWrapper
@@ -12,14 +13,14 @@ import retrofit2.Response
 class HomeRepository (private  val theDBInterface: TheDBInterface){
 
 
-    suspend fun getCharacters(ts:String,key:String,hash :String ): Response<CharacterDataWrapper> {
-        val response = theDBInterface.getCharacters(ts,key,hash)
+    suspend fun getCharacters(ts:String,key:String,hash :String,limit:Int,offset:Int ): List<Character> {
+        val response = theDBInterface.getCharacters(ts,key,hash,limit,offset)
         if(response.isSuccessful){
             Log.e("successs","sucessss")
         }else{
             Log.e("error","error")
         }
-        return response
+        return response.body()?.data?.characterList!!
     }
 
     suspend fun getCharacterDetails(id:String,ts:String,key:String,hash :String ): Response<CharacterDataWrapper> {

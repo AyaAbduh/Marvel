@@ -4,7 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.liveData
 import com.example.game.di.AppModule
+import com.example.marvel.data.Character
 import com.example.marvel.data.CharacterDataWrapper
 import com.example.marvel.data.ComicDataWrapper
 import com.example.marvel.data.EventDataWrapper
@@ -12,6 +18,7 @@ import com.example.marvel.data.SeriesDataWrapper
 import com.example.marvel.data.StoryDataWrapper
 import com.example.marvel.data.TheDBInterface
 import com.example.marvel.domain.repository.HomeRepository
+import com.example.marvel.domain.repository.ItemPagingSource
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
@@ -35,13 +42,15 @@ class HomeViewModel : ViewModel() {
     val getStoriesLiveData: LiveData<StoryDataWrapper> = _getStories
 
 
-    fun getCharacters(ts:String,key:String,hash :String){
-        viewModelScope.launch {
-            val response =homeRepository.getCharacters(ts,key,hash)
-            _getCharacters.postValue(response.body())
-        }
+        val items: LiveData<PagingData<Character>> = Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { ItemPagingSource() }
+        ).liveData.cachedIn(viewModelScope)
 
-    }
+
 
 
     fun getCharacterDetails(id:String,ts:String,key:String,hash :String){

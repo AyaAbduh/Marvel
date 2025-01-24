@@ -5,10 +5,12 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel.R
 import com.example.marvel.presentation.viewmodel.HomeViewModel
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,16 +23,18 @@ class MainActivity : AppCompatActivity() {
             getCharacters()
     }
 
+ fun getCharacters() {
+     val customAdapter = ItemAdapter()
+     val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
+     recyclerView.layoutManager = LinearLayoutManager(this)
+     recyclerView.adapter = customAdapter
 
-
- fun getCharacters(){
-     homeViewModel.getCharacters("1","32d95cf8e9fabc7cecc342536d6ffaa0","882c430e956a62b3f1e5269ee56015c3")
+     lifecycleScope.launch {
+         homeViewModel.items.observe(this@MainActivity) { pagingData ->
+             customAdapter.submitData(lifecycle,pagingData)
+         }
+     }
      homeViewModel.getCharactersLiveData.observe(this){
-
-         val customAdapter = it.data?.characterList?.let { it1 -> CustomAdapter(it1) }
-         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
-         recyclerView.layoutManager = LinearLayoutManager(this)
-         recyclerView.adapter = customAdapter
          //handling search
          val searchEditText = findViewById<EditText>(R.id.editTextText)
          searchEditText.addTextChangedListener(object:TextWatcher{
@@ -49,7 +53,5 @@ class MainActivity : AppCompatActivity() {
              }
 
          })
-     }
-
- }
+    }}
 }
