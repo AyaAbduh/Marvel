@@ -14,7 +14,7 @@ class CharacterSpecificDetailPagingSource(val id: String, val requiredDetail: Ch
         return try {
             val currentPage = params.key ?: 0
             val pageSize = params.loadSize
-            val items = characterDetailsRepository.getSpecificDetail(id, requiredDetail)
+            val items = characterDetailsRepository.getSpecificDetail(id, requiredDetail, pageSize, currentPage * pageSize)
 
             LoadResult.Page(
                 data = items,

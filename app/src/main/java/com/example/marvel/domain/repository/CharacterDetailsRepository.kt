@@ -14,16 +14,6 @@ class CharacterDetailsRepository(private val theDBInterface: TheDBInterface) {
     private val publicKey = "32d95cf8e9fabc7cecc342536d6ffaa0"
     private val hash = "882c430e956a62b3f1e5269ee56015c3"
 
-    suspend fun getCharacters(limit: Int, offset: Int): List<Character> {
-        val response = theDBInterface.getCharacters(ts, publicKey, hash, limit, offset)
-        if (response.isSuccessful) {
-            Log.e("successs", "sucessss")
-        } else {
-            Log.e("error", "error")
-        }
-        return response.body()?.data?.characterList!!
-    }
-
     suspend fun getCharacterDetails(id: String): Response<CharacterDataWrapper> {
         val response = theDBInterface.getCharacterDetails(id, ts, publicKey, hash)
         if (response.isSuccessful) {
@@ -34,22 +24,12 @@ class CharacterDetailsRepository(private val theDBInterface: TheDBInterface) {
         return response
     }
 
-    suspend fun getComics(id: String): Response<DataWrapper> {
-        val response = theDBInterface.getComics(id, ts, publicKey, hash)
-        if (response.isSuccessful) {
-            Log.e("successs", "sucessss")
-        } else {
-            Log.e("error", "error")
-        }
-        return response
-    }
-
-    suspend fun getSpecificDetail(id: String, requiredDetails: CharacterSpecificDetail): List<ItemDetailsCellModel> {
+    suspend fun getSpecificDetail(id: String, requiredDetails: CharacterSpecificDetail, limit: Int, offset: Int): List<ItemDetailsCellModel> {
         val response = when(requiredDetails) {
-            CharacterSpecificDetail.series -> theDBInterface.getSeries(id, ts, publicKey, hash)
-            CharacterSpecificDetail.comics -> theDBInterface.getComics(id, ts, publicKey, hash)
-            CharacterSpecificDetail.stories -> theDBInterface.getStories(id, ts, publicKey, hash)
-            CharacterSpecificDetail.events -> theDBInterface.getEvents(id, ts, publicKey, hash)
+            CharacterSpecificDetail.series -> theDBInterface.getSeries(id, ts, publicKey, hash, limit, offset)
+            CharacterSpecificDetail.comics -> theDBInterface.getComics(id, ts, publicKey, hash, limit, offset)
+            CharacterSpecificDetail.stories -> theDBInterface.getStories(id, ts, publicKey, hash, limit, offset)
+            CharacterSpecificDetail.events -> theDBInterface.getEvents(id, ts, publicKey, hash, limit, offset)
         }
         if (response.isSuccessful) {
             Log.e("successs", "sucessss")
@@ -57,57 +37,5 @@ class CharacterDetailsRepository(private val theDBInterface: TheDBInterface) {
             Log.e("error", "error")
         }
         return response.body()?.data?.dataList!!
-    }
-
-    suspend fun getEvents(id: String): Response<DataWrapper> {
-        val response = theDBInterface.getEvents(id, ts, publicKey, hash)
-        if (response.isSuccessful) {
-            Log.e("successs", "sucessss")
-        } else {
-            Log.e("error", "error")
-        }
-        return response
-    }
-
-    suspend fun getSeries(id: String): Response<DataWrapper> {
-        val response = theDBInterface.getSeries(id, ts, publicKey, hash)
-        if (response.isSuccessful) {
-            Log.e("successs", "sucessss")
-        } else {
-            Log.e("error", "error")
-        }
-        return response
-    }
-
-    suspend fun getStories(id: String): Response<DataWrapper> {
-        val response = theDBInterface.getStories(id, ts, publicKey, hash)
-        if (response.isSuccessful) {
-            Log.e("successs", "sucessss")
-        } else {
-            Log.e("error", "error")
-        }
-        return response
-    }
-}
-
-enum class CharacterSpecificDetail {
-    comics, series, stories, events;
-
-    fun getRelativeRecyclerName(): Int {
-        return when (this) {
-            comics -> R.id.comicsRecyclerView
-            series -> R.id.seriesRecyclerView
-            stories -> R.id.storiesRecyclerView
-            events -> R.id.eventsRecyclerView
-        }
-    }
-
-    fun getRelativeTextView(): Int {
-        return when (this) {
-            comics -> R.id.comicsTextView
-            series -> R.id.seriesTextView
-            stories -> R.id.storiesTextView
-            events -> R.id.eventsTextView
-        }
     }
 }

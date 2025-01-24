@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Marvel"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.search.SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.singlecharacter.CharacterDetailsActivity"
             android:exported="false" />
         <activity
