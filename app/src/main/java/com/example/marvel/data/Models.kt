@@ -31,71 +31,19 @@ data class Image(
     val extension:String?
 )
 
-data class ComicDataWrapper(
+data class DataWrapper(
     val code: Int?,
     @SerializedName("data")
-    val data: ComicDataContainer?
+    val data: DataContainer?
 )
-data class ComicDataContainer(
+
+data class DataContainer(
     val count: Int?,
     @SerializedName("results")
-    val ComicsList: List<Comic>?
-)
-data class Comic(
-    val id: Int?,
-    val title: String?,
-    @SerializedName("thumbnail")
-    val thumbnail:com.example.marvel.data.Image?
+    val dataList: List<ItemDetailsCellModel>?
 )
 
-data class EventDataWrapper(
-    val code: Int?,
-    @SerializedName("data")
-    val data: EventDataContainer?
-)
-
-data class EventDataContainer(
-    val count: Int?,
-    @SerializedName("results")
-    val eventList: List<Event>?
-)
-data class Event(
-    val id: Int?,
-    val title: String?,
-    @SerializedName("thumbnail")
-    val thumbnail:com.example.marvel.data.Image?
-)
-data class SeriesDataWrapper(
-    val code: Int?,
-    @SerializedName("data")
-    val data: SeriesDataContainer?
-)
-
-data class SeriesDataContainer(
-    val count: Int?,
-    @SerializedName("results")
-    val seriesList: List<Series>?
-)
-
-data class Series(
-    val id: Int?,
-    val title: String?,
-    @SerializedName("thumbnail")
-    val thumbnail:com.example.marvel.data.Image?
-)
-data class StoryDataWrapper(
-    val code: Int?,
-    @SerializedName("data")
-    val data: StoryDataContainer?
-)
-
-data class StoryDataContainer(
-    val count: Int?,
-    @SerializedName("results")
-    val storyList: List<Story>?
-)
-
-data class Story(
+data class ItemDetailsCellModel(
     val id: Int?,
     val title: String?,
     @SerializedName("thumbnail")

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvel.R
 import com.example.marvel.data.Character
-import com.example.marvel.presentation.singlecharacter.SingleCharacterActivity
+import com.example.marvel.presentation.singlecharacter.CharacterDetailsActivity
 
 class ItemAdapter() : PagingDataAdapter<Character, ItemAdapter.ItemViewHolder>(DiffUtilCallBack) {
 
@@ -38,7 +38,7 @@ class ItemAdapter() : PagingDataAdapter<Character, ItemAdapter.ItemViewHolder>(D
                 .into(imageView)
 
             imageView.setOnClickListener {
-                val intent = Intent(imageView.context, SingleCharacterActivity::class.java)
+                val intent = Intent(imageView.context, CharacterDetailsActivity::class.java)
                 intent.putExtra("id", item?.id)
                 imageView.context.startActivity(intent)
             }

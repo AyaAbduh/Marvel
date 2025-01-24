@@ -28,7 +28,7 @@ interface TheDBInterface {
     suspend fun getComics(@Path("id") id: String,
                                     @Query("ts") ts:String,
                                     @Query("apikey") apikey:String,
-                                    @Query("hash") hash:String): Response<ComicDataWrapper>
+                                    @Query("hash") hash:String): Response<DataWrapper>
 
 
 
@@ -37,7 +37,7 @@ interface TheDBInterface {
     suspend fun getEvents(@Path("id") id: String,
                           @Query("ts") ts:String,
                           @Query("apikey") apikey:String,
-                          @Query("hash") hash:String): Response<EventDataWrapper>
+                          @Query("hash") hash:String): Response<DataWrapper>
 
 
     //series
@@ -45,7 +45,7 @@ interface TheDBInterface {
     suspend fun getSeries(@Path("id") id: String,
                           @Query("ts") ts:String,
                           @Query("apikey") apikey:String,
-                          @Query("hash") hash:String): Response<SeriesDataWrapper>
+                          @Query("hash") hash:String): Response<DataWrapper>
 
 
     //stories
@@ -53,7 +53,7 @@ interface TheDBInterface {
     suspend fun getStories(@Path("id") id: String,
                           @Query("ts") ts:String,
                           @Query("apikey") apikey:String,
-                          @Query("hash") hash:String): Response<StoryDataWrapper>
+                          @Query("hash") hash:String): Response<DataWrapper>
 
 
 

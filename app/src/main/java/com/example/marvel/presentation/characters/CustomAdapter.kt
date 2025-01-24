@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvel.R
 import com.example.marvel.data.Character
-import com.example.marvel.presentation.singlecharacter.SingleCharacterActivity
+import com.example.marvel.presentation.singlecharacter.CharacterDetailsActivity
 
 class CustomAdapter(private val dataSet: List<Character>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -53,7 +53,7 @@ class CustomAdapter(private val dataSet: List<Character>) :
             .into(viewHolder.imageView)
 
         viewHolder.imageView.setOnClickListener {
-          val intent = Intent(viewHolder.textView.context, SingleCharacterActivity::class.java)
+          val intent = Intent(viewHolder.textView.context, CharacterDetailsActivity::class.java)
             intent.putExtra("id", dataSet.get(position).id)
             viewHolder.textView.context.startActivity(intent)
         }

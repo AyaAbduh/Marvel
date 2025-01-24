@@ -1,6 +1,5 @@
 package com.example.marvel.presentation.singlecharacter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvel.R
-import com.example.marvel.data.Character
-import com.example.marvel.data.Comic
+import com.example.marvel.data.ItemDetailsCellModel
 
 
-class ComicsAdapter(private val dataSet: List<Comic>) :
-        RecyclerView.Adapter<ComicsAdapter.ViewHolder>() {
+class ItemDetailsCellAdapter(private val dataSet: List<ItemDetailsCellModel>) :
+        RecyclerView.Adapter<ItemDetailsCellAdapter.ViewHolder>() {
 
         /**
          * Provide a reference to the type of views that you are using

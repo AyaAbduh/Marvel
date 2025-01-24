@@ -16,7 +16,7 @@ class ItemPagingSource: PagingSource<Int, Character>() {
         return try {
             val currentPage = params.key ?: 0
             val pageSize = params.loadSize
-            val items = homeRepository.getCharacters("1","32d95cf8e9fabc7cecc342536d6ffaa0","882c430e956a62b3f1e5269ee56015c3",pageSize, currentPage * pageSize)
+            val items = homeRepository.getCharacters(pageSize, currentPage * pageSize)
 
             LoadResult.Page(
                 data = items,
