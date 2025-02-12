@@ -41,10 +41,10 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = customAdapter
 
-        lifecycleScope.launch {
-            homeViewModel.items.observe(this@MainActivity) { pagingData ->
-                customAdapter.submitData(lifecycle, pagingData)
-            }
-        }
+//        lifecycleScope.launch {
+//            homeViewModel.items.observe(this@MainActivity) { pagingData ->
+//                customAdapter.submitData(lifecycle, pagingData)
+//            }
+//        }
     }
 }

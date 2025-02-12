@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.paging.compose.android)
     val composeBom = platform("androidx.compose:compose-bom:2025.01.01")
     implementation(composeBom)
     androidTestImplementation(composeBom)
@@ -71,6 +73,12 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("androidx.paging:paging-runtime-ktx:3.0.0")
     implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
+    // Paging3 for Jetpack Compose
+    implementation ("androidx.paging:paging-runtime-ktx:3.1.1") // or latest version
+
+    // Jetpack Compose dependencies
+    implementation ("androidx.compose.foundation:foundation:1.0.0") // or latest version
+    implementation ("androidx.compose.material:material:1.0.0") // or latest version
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -79,4 +87,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // Paging3
+    implementation ("androidx.paging:paging-runtime-ktx:3.1.1")// or the latest version
+
+    // Jetpack Compose
+    implementation ("androidx.compose.foundation:foundation:1.0.0") // or latest version
+    implementation ("androidx.compose.material:material:1.0.0")// or latest version
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.3.1") // for lifecycle integration with Compose
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1") // for lifecycle
+    implementation ("androidx.compose.runtime:runtime-livedata:1.0.0") // for LiveData integration with Compose
 }
