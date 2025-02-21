@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Marvel</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_character_detailss">CharacterDetailssActivity</string>
 </resources>

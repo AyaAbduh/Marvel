@@ -23,7 +23,7 @@ class CharacterDetailsViewModel: ViewModel() {
     private val characterDetailsRepository = CharacterDetailsRepository(theDBInterface)
 
     private val _getCharacters= MutableLiveData<CharacterDataWrapper>()
-    val getCharactersLiveData: LiveData<CharacterDataWrapper> = _getCharacters
+    val getCharactersLiveData: LiveData<CharacterDataWrapper> get() = _getCharacters
 
     fun getCharacterDetails(id:String) {
         viewModelScope.launch {

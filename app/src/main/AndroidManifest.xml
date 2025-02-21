@@ -16,16 +16,20 @@
         android:theme="@style/Theme.Marvel"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.singlecharacter.CharacterDetailssActivity"
+            android:exported="false"
+            android:label="@string/title_activity_character_detailss"
+            android:theme="@style/Theme.Marvel" />
+        <activity
             android:name=".presentation.characters.HomeActivity"
             android:exported="true"
             android:label="@string/title_activity_home"
-            android:theme="@style/Theme.Marvel" >
+            android:theme="@style/Theme.Marvel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".presentation.search.SearchActivity"
@@ -35,10 +39,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.characters.MainActivity"
-            android:exported="false">
-
-
-        </activity>
+            android:exported="false"></activity>
     </application>
 
 </manifest>

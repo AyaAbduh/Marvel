@@ -19,6 +19,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.TopAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -33,19 +36,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.lifecycle.lifecycleScope
-import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import com.bumptech.glide.Glide
+import com.example.marvel.R
 import com.example.marvel.data.Character
 import com.example.marvel.presentation.characters.ui.theme.MarvelTheme
 import com.example.marvel.presentation.singlecharacter.CharacterDetailsActivity
+import com.example.marvel.presentation.singlecharacter.CharacterDetailssActivity
 import com.example.marvel.presentation.viewmodel.HomeViewModel
 import kotlinx.coroutines.launch
 
@@ -57,13 +61,38 @@ class HomeActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MarvelTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Home(
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                Scaffold(
+                    topBar = {
+                        TopAppBar(
+                            title = { Text("Marvel") },
+                            navigationIcon = {
+                                IconButton(onClick = { navigationClickAction() }) {
+                                    Icon(painter = painterResource(id = R.drawable.backbtn), contentDescription = "Back")
+                                }
+                            },
+                            actions = {
+                                IconButton(onClick = {  onClickAction() }) {
+                                    Icon(painter = painterResource(id = R.drawable.logo), contentDescription = "Settings")
+                                }
+                            },
+                        )
+                    },
+                    content = { paddingValues ->
+                    Home(modifier = Modifier.padding( paddingValues ))
+                    }
+                )
             }
         }
+    }
+
+    private fun navigationClickAction() {
+        println("navigation icon clicked!")
+
+    }
+
+    private fun onClickAction() {
+        println("Settings icon clicked!")
+
     }
 }
 
@@ -110,7 +139,7 @@ fun Home( modifier: Modifier = Modifier) {
 
 fun onImageClick(context: Context,id:Int) {
 
-    val intent = Intent(context, CharacterDetailsActivity::class.java)
+    val intent = Intent(context, CharacterDetailssActivity::class.java)
     intent.putExtra("id", id)
 
     context.startActivity(intent) // Start the activity
